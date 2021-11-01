@@ -1,0 +1,21 @@
+
+server:
+  port: 7774
+
+spring:
+  application:
+    name: consumer
+
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+    sentinel:
+      transport:
+        dashboard: localhost:8888
+
+feign:
+  sentinel:
+    enabled: true
