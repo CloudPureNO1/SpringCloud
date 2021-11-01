@@ -28,3 +28,13 @@ spring:
             - Path=/consumer/**
           filters:
             - StripPrefix=1
+
+
+    sentinel:
+      transport:
+        dashboard: localhost:8888
+
+# ERROR
+ #The bean 'sentinelGatewayFilter', defined in class path resource [com/alibaba/cloud/sentinel/gateway/scg/SentinelSCGAutoConfiguration.class], could not be registered. A bean with that name has already been defined in class path resource [com/wxm/nacos/sentinel/gateway/config/GatewayConfiguration.class] and overriding is disabled.
+  main:
+    allow-bean-definition-overriding: true
