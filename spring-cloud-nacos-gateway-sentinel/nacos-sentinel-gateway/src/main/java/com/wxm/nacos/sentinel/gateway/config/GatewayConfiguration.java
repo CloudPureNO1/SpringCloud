@@ -9,8 +9,10 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayParamFlowItem;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
+import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.GatewayCallbackManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
+import com.wxm.nacos.sentinel.gateway.handler.MyBlockRequestHandler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
@@ -64,6 +66,11 @@ public class GatewayConfiguration {
     public void doInit() {
         initCustomizedApis();
         initGatewayRules();
+
+       // 在之前的 GatewayConfiguration 中注册一个限流处理器
+
+        GatewayCallbackManager.setBlockHandler(new MyBlockRequestHandler());
+
     }
 
 
