@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/11/1 13:04
  * @since 1.0.0
  */
-@RequestMapping("/provider")
+@RequestMapping("service")
 @RestController
 public class ProviderController {
     @Value("${server.port}")

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/11/1 13:17
  * @since 1.0.0
  */
-@RequestMapping("consumer")
+@RequestMapping("api")
 @RestController
 public class ConsumerController {
     @Value("${server.port}")

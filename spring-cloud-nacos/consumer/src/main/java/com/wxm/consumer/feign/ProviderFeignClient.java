@@ -19,6 +19,6 @@ public interface ProviderFeignClient {
      * @param name
      * @return
      */
-    @GetMapping("/provider/getMsg")
+    @GetMapping("/service/getMsg")
     String getMsg(@RequestParam(value="name",required = false) String name);
 }
