@@ -1,5 +1,6 @@
 package com.wxm.consumer.controller;
 
+import com.wxm.consumer.feign.ProviderConfigFeignClient;
 import com.wxm.consumer.feign.ProviderFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,11 +22,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConsumerController {
     @Value("${server.port}")
     private String serverPort;
-    @Autowired
-    private ProviderFeignClient providerFeignClient;
+
+    private final ProviderFeignClient providerFeignClient;
+    private final ProviderConfigFeignClient providerConfigFeignClient;
+
+    public ConsumerController(ProviderFeignClient providerFeignClient,ProviderConfigFeignClient providerConfigFeignClient) {
+        this.providerFeignClient = providerFeignClient;
+        this.providerConfigFeignClient = providerConfigFeignClient;
+    }
+
 
     @GetMapping("/showMsg")
     private String getMsg(@RequestParam(value="name",required = false) String name){
         return providerFeignClient.getMsg(name)+", The current access comes from a consumer with port number "+serverPort;
+    }
+
+
+    @GetMapping("/config/showMsg")
+    private String getMsgConfig(@RequestParam(value="name",required = false) String name){
+        return providerConfigFeignClient.getMsg(name)+", The current access comes from a consumer with port number "+serverPort;
+    }
+
+    @GetMapping("/config/showName")
+    private String getNameConfig(@RequestParam(value="name",required = false) String name){
+        return providerConfigFeignClient.getName()+", The current access comes from a consumer with port number "+serverPort;
     }
 }

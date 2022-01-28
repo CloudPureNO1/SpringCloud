@@ -25,6 +25,7 @@
     <modules>
         <module>provider</module>
         <module>consumer</module>
+        <module>provider-config</module>
     </modules>
 
     <dependencyManagement>
